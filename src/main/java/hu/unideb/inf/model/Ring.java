@@ -1,7 +1,6 @@
 package hu.unideb.inf.model;
 
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -22,7 +21,7 @@ public class Ring {
     private static List<Integer> START = IntStream.rangeClosed(1, 20).boxed().collect(Collectors.toList());
 
     /**
-     * The list of numbers representing the current state.
+     * The list of numbers representing the current state. The first four numbers are reversible.
      */
     private List<Integer> numbers;
 
@@ -48,7 +47,6 @@ public class Ring {
         this.numbers = numbers;
     }
 
-
     /**
      * Checks if given list represents a valid configuration of a ring.
      *
@@ -72,11 +70,6 @@ public class Ring {
         return GOAL.equals(numbers);
     }
 
-    public List<Integer> getNumbers() {
-        return numbers;
-    }
-
-
     /**
      * Turns the ring clockwise.
      */
@@ -89,8 +82,8 @@ public class Ring {
      * Turns the ring anti-clockwise.
      */
     public void turnLeft() {
-        Integer last = numbers.remove(19);
-        numbers.add(0, last);
+        Integer first = numbers.remove(0);
+        numbers.add(19, first);
     }
 
     /**
@@ -101,10 +94,28 @@ public class Ring {
         Collections.swap(numbers, 1, 2);
     }
 
+    /**
+     * Returns the list of numbers of the ring.
+     *
+     * @return {@code List} of Integers resembling the ring, with the number at {@code index 0} being the
+     * first reversible number.
+     */
+    public List<Integer> getNumbers() {
+        return numbers;
+    }
+
+    /**
+     * String representation of the ring.
+     *
+     * @return String representation of the ring in the format of
+     * <em>$remaining_second_half$</em>[ <em>$reversable_numbers$</em> ] <em>$remaining_first_half$</em>
+     */
     @Override
     public String toString() {
-        List<Integer> firstFour = numbers.subList(0, 4);
-        List<Integer> remaining = numbers.subList(4, numbers.size());
-        return String.format("[ %s ] %s", firstFour.toString(), remaining.toString());
+        List<Integer> reversible = numbers.subList(0, 4);
+        List<Integer> remainingFirstHalf = numbers.subList(4, 13);
+        List<Integer> remainingSecondHalf = numbers.subList(13, 20);
+        return String.format("%s %s %s", remainingSecondHalf.toString().replaceAll("\\p{P}", ""),
+                reversible.toString(), remainingFirstHalf.toString().replaceAll("\\p{P}", ""));
     }
 }
