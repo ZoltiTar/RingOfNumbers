@@ -1,4 +1,4 @@
 /**
- * Package containing classes for data representation.
+ * Package containing classes for representing data.
  */
 package hu.unideb.inf.model;
