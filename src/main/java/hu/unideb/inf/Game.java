@@ -1,7 +1,6 @@
 package hu.unideb.inf;
 
 import com.github.lalyos.jfiglet.FigletFont;
-import com.github.lalyos.jfiglet.JFiglet;
 import hu.unideb.inf.controller.LaunchController;
 
 import lombok.extern.slf4j.Slf4j;
