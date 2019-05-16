@@ -1,4 +1,4 @@
-package hu.unideb.inf.model;
+package hu.unideb.inf.model.results;
 
 import de.vandermeer.asciitable.AsciiTable;
 import de.vandermeer.asciitable.CWC_LongestLine;

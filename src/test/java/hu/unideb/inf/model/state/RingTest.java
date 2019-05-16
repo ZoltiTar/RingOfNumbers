@@ -1,7 +1,9 @@
-package hu.unideb.inf.model;
+package hu.unideb.inf.model.state;
 
+import hu.unideb.inf.model.state.Ring;
 import org.junit.jupiter.api.Test;
 
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -9,6 +11,20 @@ import java.util.stream.IntStream;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class RingTest {
+
+    @Test
+    void noArgsConstTest() {
+        Ring ring = new Ring();
+        assertEquals(ring.getNumbers(), IntStream.rangeClosed(1, 20).boxed().collect(Collectors.toList()));
+    }
+
+    @Test
+    void singleArgsConstTest() {
+        assertThrows(IllegalArgumentException.class, () -> new Ring(null));
+        assertThrows(IllegalArgumentException.class, () -> new Ring(List.of(1, 2)));
+        assertThrows(IllegalArgumentException.class,
+                () -> new Ring(IntStream.rangeClosed(0, 19).boxed().collect(Collectors.toList())));
+    }
 
     @Test
     void turnRightTest() {
@@ -35,5 +51,22 @@ public class RingTest {
         Ring testRing = new Ring(firstTestNumbers);
         testRing.reverse();
         assertEquals(testRing.getNumbers(), firstTestResult);
+    }
+
+    @Test
+    void isGoalTest() {
+        assertFalse(new Ring().isGoal());
+        List<Integer> listOfGoalState = IntStream.rangeClosed(1, 20).boxed().collect(Collectors.toList());
+        Collections.reverse(listOfGoalState);
+        Ring goalRing = new Ring(listOfGoalState);
+        assertTrue(goalRing.isGoal());
+        goalRing.turnRight();
+        assertFalse(goalRing.isGoal());
+        goalRing.turnLeft();
+        assertTrue(goalRing.isGoal());
+        goalRing.reverse();
+        assertFalse(goalRing.isGoal());
+        goalRing.reverse();
+        assertTrue(goalRing.isGoal());
     }
 }

@@ -1,5 +1,6 @@
-package hu.unideb.inf.model;
+package hu.unideb.inf.model.state;
 
+import hu.unideb.inf.model.state.Operation;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 

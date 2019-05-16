@@ -1,7 +1,7 @@
 package hu.unideb.inf.controller;
 
-import hu.unideb.inf.model.Result;
-import hu.unideb.inf.model.Scoreboard;
+import hu.unideb.inf.model.results.Result;
+import hu.unideb.inf.model.results.Scoreboard;
 import hu.unideb.inf.util.json.ScoreboardJsonService;
 import lombok.extern.slf4j.Slf4j;
 

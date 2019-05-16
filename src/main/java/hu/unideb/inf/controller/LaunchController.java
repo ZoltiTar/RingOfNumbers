@@ -1,6 +1,6 @@
 package hu.unideb.inf.controller;
 
-import hu.unideb.inf.model.Result;
+import hu.unideb.inf.model.results.Result;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.Scanner;

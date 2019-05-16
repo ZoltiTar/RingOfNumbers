@@ -2,7 +2,7 @@ package hu.unideb.inf.util.json;
 
 import com.google.gson.*;
 import com.google.gson.stream.JsonReader;
-import hu.unideb.inf.model.Scoreboard;
+import hu.unideb.inf.model.results.Scoreboard;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.*;

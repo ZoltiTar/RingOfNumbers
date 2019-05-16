@@ -1,9 +1,9 @@
 package hu.unideb.inf.controller;
 
 import com.github.lalyos.jfiglet.FigletFont;
-import hu.unideb.inf.model.Operation;
-import hu.unideb.inf.model.Result;
-import hu.unideb.inf.model.Ring;
+import hu.unideb.inf.model.state.Operation;
+import hu.unideb.inf.model.results.Result;
+import hu.unideb.inf.model.state.Ring;
 import lombok.extern.slf4j.Slf4j;
 
 import java.io.IOException;
