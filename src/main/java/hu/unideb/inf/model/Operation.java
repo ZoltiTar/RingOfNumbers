@@ -11,12 +11,19 @@ import java.util.List;
  * @see hu.unideb.inf.controller.GameController#performAction(Operation)
  */
 public enum Operation {
+    /** The operation should turn the ring left. */
     LEFT,
+    /** The operation should turn the ring left three times. */
     LEFT3X,
+    /** The operation should turn the ring right. */
     RIGHT,
+    /** The operation should turn the ring right three times. */
     RIGHT3X,
+    /** The operation should reverse the numbers in the brackets. */
     REVERSE,
+    /** The operation should stop the game, and return to the main menu. */
     RETURN,
+    /** The operation should be to print the controls again, and tell the user that the input was incorrect. */
     UNKNOWN;
 
     /**
