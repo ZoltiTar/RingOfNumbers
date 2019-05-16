@@ -6,7 +6,6 @@ import de.vandermeer.skb.interfaces.transformers.textformat.TextAlignment;
 import lombok.*;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * Class for holding the top 10 results of the puzzle.
