@@ -5,6 +5,7 @@ import de.vandermeer.asciitable.CWC_LongestLine;
 import de.vandermeer.asciithemes.TA_GridThemes;
 import de.vandermeer.skb.interfaces.transformers.textformat.TextAlignment;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -18,7 +19,7 @@ public class Ring {
     /**
      * The list of numbers representing the goal state.
      */
-    private static List<Integer> GOAL = List.of(20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1);
+    public static List<Integer> GOAL = List.of(20, 19, 18, 17, 16, 15, 14, 13, 12, 11, 10, 9, 8, 7, 6, 5, 4, 3, 2, 1);
 
     /**
      * The list of numbers representing the start state.
@@ -49,7 +50,7 @@ public class Ring {
         if (!isValidRing(numbers)) {
             throw new IllegalArgumentException("The given list does not represent a valid ring of numbers.");
         }
-        this.numbers = numbers;
+        this.numbers = new ArrayList<>(numbers);
     }
 
     /**
@@ -62,8 +63,9 @@ public class Ring {
         if (numbers == null || numbers.size() != 20) {
             return false;
         }
-        numbers.sort(null);
-        return numbers.equals(START);
+        List<Integer> sorted = new ArrayList<>(numbers);
+        sorted.sort(null);
+        return sorted.equals(START);
     }
 
     /**
