@@ -35,35 +35,7 @@ public class Ring {
      * of the puzzle.
      */
     public Ring() {
-        this(START);
-    }
-
-    /**
-     * Creates a {@code Ring} object configured with specified list.
-     *
-     * @param numbers a {@code List} of {@code Integer}s of the size 20, with integers
-     *                of the [1, 20] interval.
-     * @throws IllegalArgumentException if the given list of numbers does not represent a valid configuration.
-     */
-    public Ring(List<Integer> numbers) {
-        if (!isValidRing(numbers)) {
-            throw new IllegalArgumentException("The given list does not represent a valid ring of numbers.");
-        }
-        this.numbers = numbers;
-    }
-
-    /**
-     * Checks if given list represents a valid configuration of a ring.
-     *
-     * @param numbers the list to be validated
-     * @return {@code true} if the list is a valid configuration, {@code false} if it does not represent a ring
-     */
-    private boolean isValidRing(List<Integer> numbers) {
-        if (numbers == null || numbers.size() != 20) {
-            return false;
-        }
-        numbers.sort(null);
-        return numbers.equals(START);
+        this.numbers = START;
     }
 
     /**
