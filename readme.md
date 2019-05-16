@@ -4,7 +4,10 @@ Ring of Numbers
 Description
 -----------
 Ring of Numbers is a puzzle, where you start with a ring of numbers from [1, 20] in ascending order, going clockwise.
-The goal is to reverse the numbers in a ring, so that they are in descending order, going clockwise.
+The goal is to reverse the numbers in a ring, so that they are in descending order, going clockwise. Your options to change the ring are limited:
+* You can turn the ring clockwise once or three times.
+* You can turn the ring anti-clockwise once or three times.
+* You can reverse the numbers in the middle (inside brackets).
 
 Requirements
 ------------
