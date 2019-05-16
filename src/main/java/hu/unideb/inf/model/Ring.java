@@ -1,5 +1,10 @@
 package hu.unideb.inf.model;
 
+import de.vandermeer.asciitable.AsciiTable;
+import de.vandermeer.asciitable.CWC_LongestLine;
+import de.vandermeer.asciithemes.TA_GridThemes;
+import de.vandermeer.skb.interfaces.transformers.textformat.TextAlignment;
+
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -105,17 +110,29 @@ public class Ring {
     }
 
     /**
-     * String representation of the ring.
+     * String representation of the ring. Using de.vandermeer.asciitable package to print as text.
      *
-     * @return String representation of the ring in the format of
-     * <em>$remaining_second_half$</em>[ <em>$reversable_numbers$</em> ] <em>$remaining_first_half$</em>
+     * @return the ring in the shape of a ring, as a printable string
      */
     @Override
     public String toString() {
-        List<Integer> reversible = numbers.subList(0, 4);
-        List<Integer> remainingFirstHalf = numbers.subList(4, 13);
-        List<Integer> remainingSecondHalf = numbers.subList(13, 20);
-        return String.format("%s %s %s", remainingSecondHalf.toString().replaceAll("\\p{P}", ""),
-                reversible.toString(), remainingFirstHalf.toString().replaceAll("\\p{P}", ""));
+        AsciiTable table = new AsciiTable();
+        table.getContext().setGridTheme(TA_GridThemes.NONE);
+        table.addRule();
+        table.addRow("", "", numbers.get(19),
+                String.format("[%d", numbers.get(0)), numbers.get(1), numbers.get(2), String.format("%d]", numbers.get(3)),
+                numbers.get(4), "", "");
+        table.addRow("", numbers.get(18), "", "", "", "", "", "", numbers.get(5), "");
+        table.addRow(numbers.get(17), "", "", "", "", "", "", "", "", numbers.get(6));
+        table.addRow(numbers.get(16), "", "", "", "", "", "", "", "", numbers.get(7));
+        table.addRow("", numbers.get(15), "", "", "", "", "", "", numbers.get(8), "");
+        table.addRow("", "", numbers.get(14), numbers.get(13), numbers.get(12),
+                numbers.get(11), numbers.get(10), numbers.get(9), "", "");
+        table.addRule();
+
+        table.setTextAlignment(TextAlignment.JUSTIFIED);
+        table.getRenderer().setCWC(new CWC_LongestLine());
+        return table.render();
     }
+
 }
