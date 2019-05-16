@@ -13,7 +13,7 @@ Requirements
 ------------
 The user must have Apache Maven installed, preferably anything above version 3.6.0, and Java JDK 11.0.2 or above to compile/package and run the game.
 
-Packaging/Playing
+Packaging/Running the game
 -----------------
 To run the game, one must run the maven command ```mvn package``` to get the runnable jar.
 
