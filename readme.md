@@ -3,7 +3,6 @@ Ring of Numbers
 ---
 Description
 -----------
-
 Ring of Numbers is a puzzle, where you start with a ring of numbers from [1, 20] in ascending order, going clockwise.
 The goal is to reverse the numbers in a ring, so that they are in descending order, going clockwise.
 
