@@ -1,10 +1,12 @@
 package hu.unideb.inf.controller;
 
+import com.github.lalyos.jfiglet.FigletFont;
 import hu.unideb.inf.model.Operation;
 import hu.unideb.inf.model.Result;
 import hu.unideb.inf.model.Ring;
 import lombok.extern.slf4j.Slf4j;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 @Slf4j
@@ -23,17 +25,29 @@ public class GameController {
         return controller;
     }
 
+    /**
+     * Ring of the current game, altering it by performing operations on user input.
+     */
     private Ring ring;
+    /**
+     * Step count for the current game.
+     */
     private int steps;
+    /**
+     * The operation to be done, generated form user input.
+     */
     private Operation action;
+    /**
+     * Name of the player currently playing.
+     */
     private String playerName;
 
     /**
      * The game loop. First prints all available controls, then waits for user input to start the game.
      *
      * @param name name of the player
-     * @return the result entry of the game
-     *
+     * @return the result entry of the game, containing the player's name, steps made,
+     * and whether the puzzle has been solved
      * @see Result
      */
     public Result launch(String name) {
@@ -42,6 +56,10 @@ public class GameController {
         suspend();
         log.info("Starting game for {}", playerName);
         while (true) {
+            if (checkGoal()) {
+                printCongrats();
+                break;
+            }
             printState();
             action = Operation.of(in.nextLine());
             if (action.equals(Operation.RETURN)) break;
@@ -53,6 +71,20 @@ public class GameController {
                 .steps(steps)
                 .solved(ring.isGoal())
                 .build();
+    }
+
+    private void printCongrats() {
+        log.info("{} has solved the puzzle!", playerName);
+        try {
+            System.out.println(FigletFont.convertOneLine("Congratulations,"));
+            System.out.println(FigletFont.convertOneLine("you solved the puzzle!"));
+        } catch (IOException e) {
+            System.out.println("Congratulations, you solved the puzzle!");
+        }
+    }
+
+    private boolean checkGoal() {
+        return ring.isGoal();
     }
 
     private void suspend() {
@@ -69,8 +101,7 @@ public class GameController {
         if (op.equals(Operation.UNKNOWN)) {
             log.info("Unknown operation, printing operation choices.");
             printControls();
-        }
-        else log.error("Passing all available operations.");
+        } else log.error("Passing all available operations.");
     }
 
     private void turnLeft() {
