@@ -3,15 +3,17 @@ Ring of Numbers
 ---
 Description
 -----------
-
 Ring of Numbers is a puzzle, where you start with a ring of numbers from [1, 20] in ascending order, going clockwise.
-The goal is to reverse the numbers in a ring, so that they are in descending order, going clockwise.
+The goal is to reverse the numbers in a ring, so that they are in descending order, going clockwise. Your options to change the ring are limited:
+* You can turn the ring clockwise once or three times.
+* You can turn the ring anti-clockwise once or three times.
+* You can reverse the numbers in the middle (inside brackets).
 
 Requirements
 ------------
 The user must have Apache Maven installed, preferably anything above version 3.6.0, and Java JDK 11.0.2 or above to compile/package and run the game.
 
-Packaging/Playing
+Packaging/Running the game
 -----------------
 To run the game, one must run the maven command ```mvn package``` to get the runnable jar.
 
