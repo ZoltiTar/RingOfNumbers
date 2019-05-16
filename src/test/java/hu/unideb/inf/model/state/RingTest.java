@@ -1,6 +1,5 @@
 package hu.unideb.inf.model.state;
 
-import hu.unideb.inf.model.state.Ring;
 import org.junit.jupiter.api.Test;
 
 import java.util.Collections;
