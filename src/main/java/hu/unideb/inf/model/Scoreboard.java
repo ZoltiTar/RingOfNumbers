@@ -72,7 +72,8 @@ public class Scoreboard {
                 results.add(i, result);
                 break;
             } else if (result.getSteps() == res.getSteps()) {
-                results.add((result.getName().compareToIgnoreCase(res.getName()) > -1) ? i : ++i, result);
+                results.add((result.getName().compareToIgnoreCase(res.getName()) > -1) ? i : i + 1, result);
+                break;
             }
         }
     }
@@ -92,7 +93,8 @@ public class Scoreboard {
                 results.add((result.getName().compareToIgnoreCase(res.getName()) > -1) ? i : ++i, result);
                 break;
             } else if (result.getSteps() == res.getSteps()) {
-                results.add((result.getName().compareToIgnoreCase(res.getName()) > -1) ? i : ++i, result);
+                results.add((result.getName().compareToIgnoreCase(res.getName()) > -1) ? i : i + 1, result);
+                break;
             }
         }
     }

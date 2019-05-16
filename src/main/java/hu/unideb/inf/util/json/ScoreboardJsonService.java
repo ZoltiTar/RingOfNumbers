@@ -23,7 +23,7 @@ public class ScoreboardJsonService {
      * Updates the local scoreboard, does nothing, if there is {@code IOException} during the
      * creation of the {@code FileWriter} for the json file.
      *
-     * @param scoreboard the new scoreboard to overwrite the old one
+     * @param scoreboard the new scoreboard to overwrite the old one with
      *
      * @see FileWriter
      * @see IOException

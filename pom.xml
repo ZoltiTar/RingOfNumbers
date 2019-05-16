@@ -15,9 +15,7 @@
         <exec.mainClass>hu.unideb.inf.Game</exec.mainClass>
     </properties>
 
-
     <packaging>jar</packaging>
-
 
     <description>
         Ring of Numbers is a game where the goal is to reverse the numbers' order
