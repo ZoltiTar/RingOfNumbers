@@ -8,7 +8,7 @@ import lombok.*;
 import java.util.ArrayList;
 
 /**
- * Class for holding the top 10 results of the puzzle.
+ * Class for holding the top 10 (local) results of the puzzle.
  */
 @Data
 @RequiredArgsConstructor
@@ -20,6 +20,9 @@ public class Scoreboard {
     @NonNull
     private ArrayList<Result> results;
 
+    /**
+     * Creates new Scoreboard object, with an empty (but instantiated) list.
+     */
     public Scoreboard() {
         this.results = new ArrayList<>();
     }
