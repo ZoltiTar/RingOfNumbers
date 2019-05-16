@@ -1,4 +1,4 @@
-package hu.unideb.inf.util;
+package hu.unideb.inf.util.json;
 
 import com.google.gson.*;
 import com.google.gson.stream.JsonReader;
@@ -12,9 +12,12 @@ import java.io.*;
  * Json service for loading and saving local scoreboard from/to working directory.
  */
 @Slf4j
-public class JsonService {
+public class ScoreboardJsonService {
 
-    private Gson gson = new GsonBuilder().setPrettyPrinting().create();
+    /**
+     * The Gson object to read/write the scoreboard to working directory.
+     */
+    private static Gson gson = new GsonBuilder().setPrettyPrinting().create();
 
     /**
      * Updates the local scoreboard, does nothing, if there is {@code IOException} during the

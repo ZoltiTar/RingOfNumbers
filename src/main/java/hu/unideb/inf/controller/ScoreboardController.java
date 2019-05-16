@@ -2,7 +2,7 @@ package hu.unideb.inf.controller;
 
 import hu.unideb.inf.model.Result;
 import hu.unideb.inf.model.Scoreboard;
-import hu.unideb.inf.util.JsonService;
+import hu.unideb.inf.util.json.ScoreboardJsonService;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.Scanner;
@@ -19,14 +19,14 @@ public class ScoreboardController {
     public static ScoreboardController getController() {
         if (controller == null) {
             controller = new ScoreboardController();
-            controller.json = new JsonService();
+            controller.json = new ScoreboardJsonService();
             controller.readScoreboard();
             in = new Scanner(System.in);
         }
         return controller;
     }
 
-    private JsonService json;
+    private ScoreboardJsonService json;
     private Scoreboard scoreboard;
 
     public void show() {
