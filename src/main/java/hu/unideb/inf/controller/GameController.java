@@ -73,16 +73,6 @@ public class GameController {
                 .build();
     }
 
-    private void printCongrats() {
-        log.info("{} has solved the puzzle!", playerName);
-        try {
-            System.out.println(FigletFont.convertOneLine("Congratulations,"));
-            System.out.println(FigletFont.convertOneLine("you solved the puzzle!"));
-        } catch (IOException e) {
-            System.out.println("Congratulations, you solved the puzzle!");
-        }
-    }
-
     private boolean checkGoal() {
         return ring.isGoal();
     }
@@ -94,14 +84,15 @@ public class GameController {
 
     private void performAction(Operation op) {
         if (op.equals(Operation.LEFT)) turnLeft();
-        if (op.equals(Operation.LEFT3X)) turnLeft3();
-        if (op.equals(Operation.RIGHT)) turnRight();
-        if (op.equals(Operation.RIGHT3X)) turnRight3();
-        if (op.equals(Operation.REVERSE)) reverse();
-        if (op.equals(Operation.UNKNOWN)) {
+        else if (op.equals(Operation.LEFT3X)) turnLeft3();
+        else if (op.equals(Operation.RIGHT)) turnRight();
+        else if (op.equals(Operation.RIGHT3X)) turnRight3();
+        else if (op.equals(Operation.REVERSE)) reverse();
+        else if (op.equals(Operation.RESET)) resetGame();
+        else if (op.equals(Operation.UNKNOWN)) {
             log.info("Unknown operation, printing operation choices.");
             printControls();
-        } else log.error("Passing all available operations.");
+        } else log.warn("Passing all available operations.");
     }
 
     private void turnLeft() {
@@ -138,6 +129,12 @@ public class GameController {
         ++steps;
     }
 
+    private void resetGame() {
+        log.info("Resetting game for {}", playerName);
+        ring = new Ring();
+        steps = 0;
+    }
+
     private void printState() {
         System.out.println(ring);
         System.out.print(String.format("Steps: %d; Your action: ", steps));
@@ -145,12 +142,23 @@ public class GameController {
 
     private void printControls() {
         log.info("Printing available operations.");
-        System.out.println("To turn the ring anti-clockwise, enter LEFT or L");
-        System.out.println("To turn the ring anti-clockwise three times, enter LEFT3 or L3");
-        System.out.println("To turn the ring clockwise, enter RIGHT or R");
-        System.out.println("To turn the ring clockwise three times, enter RIGHT3 or R3");
-        System.out.println("To reverse the numbers in the middle, enter REVERSE or REV");
-        System.out.println("To return to the starting screen, enter RETURN");
+        System.out.println("To turn the ring anti-clockwise: ".concat(Operation.LEFT_COMMANDS.toString()));
+        System.out.println("To turn the ring anti-clockwise three times: ".concat(Operation.LEFT3X_COMMANDS.toString()));
+        System.out.println("To turn the ring clockwise: ".concat(Operation.RIGHT_COMMANDS.toString()));
+        System.out.println("To turn the ring clockwise three times: ".concat(Operation.RIGHT3X_COMMANDS.toString()));
+        System.out.println("To reverse the numbers in the middle: ".concat(Operation.REVERSE_COMMANDS.toString()));
+        System.out.println("To reset the game: ".concat(Operation.RESET_COMMANDS.toString()));
+        System.out.println("To return to the starting screen: ".concat(Operation.RETURN_COMMANDS.toString()));
+    }
+
+    private void printCongrats() {
+        log.info("{} has solved the puzzle!", playerName);
+        try {
+            System.out.println(FigletFont.convertOneLine("Congratulations,"));
+            System.out.println(FigletFont.convertOneLine("you solved the puzzle!"));
+        } catch (IOException e) {
+            System.out.println("Congratulations, you solved the puzzle!");
+        }
     }
 
     private void initGame(String playerName) {
