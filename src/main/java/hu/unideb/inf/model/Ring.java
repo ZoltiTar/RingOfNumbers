@@ -110,7 +110,7 @@ public class Ring {
     }
 
     /**
-     * String representation of the ring. Using de.vandermeer.asciitable package to render as text.
+     * String representation of the ring. Using de.vandermeer.asciitable package to print as text.
      *
      * @return the ring in the shape of a ring, as a printable string
      */
