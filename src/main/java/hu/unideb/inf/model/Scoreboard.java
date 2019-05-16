@@ -90,7 +90,7 @@ public class Scoreboard {
             Result res = results.get(i);
             if (res.isSolved()) continue;
             if (result.getSteps() > res.getSteps()) {
-                results.add((result.getName().compareToIgnoreCase(res.getName()) > -1) ? i : ++i, result);
+                results.add((result.getName().compareToIgnoreCase(res.getName()) > -1) ? i : i + 1, result);
                 break;
             } else if (result.getSteps() == res.getSteps()) {
                 results.add((result.getName().compareToIgnoreCase(res.getName()) > -1) ? i : i + 1, result);
