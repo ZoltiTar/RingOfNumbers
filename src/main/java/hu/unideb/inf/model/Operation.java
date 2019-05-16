@@ -50,7 +50,7 @@ public enum Operation {
      *
      * @param command the string representing the action to be made
      * @return Operation to be performed, or {@code Operation.UNKNOWN}
-     * if {@param command} is not a valid command.
+     * if the given command is not a valid command.
      *
      * @see GameController#printControls()
      */
