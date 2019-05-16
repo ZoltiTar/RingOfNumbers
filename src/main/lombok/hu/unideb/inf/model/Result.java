@@ -1,14 +1,12 @@
 package hu.unideb.inf.model;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 /**
  * Class representing information about the result of an attempt at the puzzle.
+ *
+ * The class has a builder, no argument constructor, and all arguments constructor provided by lombok.
  */
-@Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
@@ -17,17 +15,17 @@ public class Result {
     /**
      * The name of the player.
      */
-    private String name;
+    @Getter @Setter private String name;
 
     /**
      * The number of steps the player made.
      */
-    private int steps;
+    @Getter @Setter private int steps;
 
     /**
      * Indicates whether the player has solved the puzzle.
      */
-    private boolean solved;
+    @Getter @Setter private boolean solved;
 
     /**
      * String representation of the result.
