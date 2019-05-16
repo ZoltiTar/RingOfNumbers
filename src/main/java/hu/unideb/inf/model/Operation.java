@@ -29,28 +29,27 @@ public enum Operation {
     /**
      * List containing all commands which turn the ring left.
      */
-    private static final List<String> LEFT_COMMANDS = List.of("LEFT, L");
-
+    public static final List<String> LEFT_COMMANDS = List.of("LEFT, L");
 
     /**
      * List containing all commands which turn the ring left three times.
      */
-    private static final List<String> LEFT3X_COMMANDS = List.of("LEFT3, L3");
+    public static final List<String> LEFT3X_COMMANDS = List.of("LEFT3, L3");
 
     /**
      * List containing all commands which turn the ring right.
      */
-    private static final List<String> RIGHT_COMMANDS = List.of("RIGHT, R");
+    public static final List<String> RIGHT_COMMANDS = List.of("RIGHT, R");
 
     /**
      * List containing all commands which turn the ring right three times.
      */
-    private static final List<String> RIGHT3X_COMMANDS = List.of("RIGHT3, R3");
+    public static final List<String> RIGHT3X_COMMANDS = List.of("RIGHT3, R3");
 
     /**
      * List containing all commands which reverse the reversible numbers in the middle.
      */
-    private static final List<String> REVERSE_COMMANDS = List.of("REVERSE, REV");
+    public static final List<String> REVERSE_COMMANDS = List.of("REVERSE, REV");
 
     /**
      * Returns the Operation type to be performed by the command given.
