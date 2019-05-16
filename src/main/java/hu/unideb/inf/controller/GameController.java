@@ -1,5 +1,6 @@
 package hu.unideb.inf.controller;
 
+import hu.unideb.inf.model.Operation;
 import hu.unideb.inf.model.Result;
 import hu.unideb.inf.model.Ring;
 import lombok.extern.slf4j.Slf4j;
@@ -24,17 +25,26 @@ public class GameController {
 
     private Ring ring;
     private int steps;
-    private String action;
+    private Operation action;
     private String playerName;
 
+    /**
+     * The game loop. First prints all available controls, then waits for user input to start the game.
+     *
+     * @param name name of the player
+     * @return the result entry of the game
+     *
+     * @see Result
+     */
     public Result launch(String name) {
         initGame(name);
         printControls();
+        suspend();
         log.info("Starting game for {}", playerName);
         while (true) {
             printState();
-            action = in.nextLine();
-            if (action.compareToIgnoreCase("RETURN") == 0) break;
+            action = Operation.of(in.nextLine());
+            if (action.equals(Operation.RETURN)) break;
             else performAction(action);
         }
 
@@ -45,20 +55,36 @@ public class GameController {
                 .build();
     }
 
-    private void performAction(String action) {
-        switch (action.toUpperCase()) {
-            case "RIGHT":
-                turnRight();
-                break;
-            case "LEFT":
-                turnLeft();
-                break;
-            case "REVERSE":
-                reverse();
-                break;
-            default:
-                System.out.println("Unknown operation.");
+    private void suspend() {
+        System.out.println("When you are ready, press ENTER to start the game.");
+        in.nextLine();
+    }
+
+    private void performAction(Operation op) {
+        if (op.equals(Operation.LEFT)) turnLeft();
+        if (op.equals(Operation.LEFT3X)) turnLeft3();
+        if (op.equals(Operation.RIGHT)) turnRight();
+        if (op.equals(Operation.RIGHT3X)) turnRight3();
+        if (op.equals(Operation.REVERSE)) reverse();
+        if (op.equals(Operation.UNKNOWN)) {
+            log.info("Unknown operation, printing operation choices.");
+            printControls();
         }
+        else log.error("Passing all available operations.");
+    }
+
+    private void turnLeft() {
+        log.info("{} is turning the ring anti-clockwise.", playerName);
+        ring.turnLeft();
+        ++steps;
+    }
+
+    private void turnLeft3() {
+        log.info("{} is turning the ring clockwise, three times.", playerName);
+        for (int i = 0; i < 3; i++) {
+            ring.turnLeft();
+        }
+        ++steps;
     }
 
     private void turnRight() {
@@ -67,9 +93,11 @@ public class GameController {
         ++steps;
     }
 
-    private void turnLeft() {
-        log.info("{} is turning the ring anti-clockwise.", playerName);
-        ring.turnLeft();
+    private void turnRight3() {
+        log.info("{} is turning the ring anti-clockwise, three times.", playerName);
+        for (int i = 0; i < 3; i++) {
+            ring.turnRight();
+        }
         ++steps;
     }
 
@@ -85,12 +113,13 @@ public class GameController {
     }
 
     private void printControls() {
-        System.out.println("To turn the ring clockwise, enter \"RIGHT\"");
-        System.out.println("To turn the ring anti-clockwise, enter \"LEFT\"");
-        System.out.println("To reverse the numbers in the middle, enter \"REVERSE\"");
-        System.out.println("To return to the starting screen, enter \"RETURN\"");
-        System.out.println("When you are ready, press ENTER to start the game.");
-        in.nextLine();
+        log.info("Printing available operations.");
+        System.out.println("To turn the ring anti-clockwise, enter LEFT or L");
+        System.out.println("To turn the ring anti-clockwise three times, enter LEFT3 or L3");
+        System.out.println("To turn the ring clockwise, enter RIGHT or R");
+        System.out.println("To turn the ring clockwise three times, enter RIGHT3 or R3");
+        System.out.println("To reverse the numbers in the middle, enter REVERSE or REV");
+        System.out.println("To return to the starting screen, enter RETURN");
     }
 
     private void initGame(String playerName) {
